@@ -1,0 +1,14 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+      - echo "Phase de pré-construction"
+
+  build:
+    commands:
+      - echo "Construction du code"
+
+  post_build:
+    commands:
+      - echo "Phase post-construction"
