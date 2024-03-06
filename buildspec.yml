@@ -13,3 +13,6 @@ phases:
   post_build:
     commands:
       - echo "Phase post-construction"
+artifacts:
+  files: "**/*"
+  name: 'springapp'
