@@ -1,23 +1,20 @@
 version: 0.2
-
 phases:
   install:
-    runtime-version:
-      java: corretto11
+    runtime-versions:
+      java: corretto8
   pre_build:
     commands:
-      - echo "Phase de pré-construction"
-
+    - echo In the pre_build phase...
   build:
     commands:
-      - echo "Construction du code"
-      - mvn clean install
-
+    - echo Build started on `date`
   post_build:
     commands:
-      - echo "Phase post-construction"
+    - echo Build completed on `date`
+    - mvn package
+    - mv target/bike-service-0.0.1-SNAPSHOT.war bike-service-0.0.1-SNAPSHOT.war
 artifacts:
   files:
-    - target/*.jar
-    - scripts/*.sh
-  discard-paths: yes
+  - bike-service-0.0.1-SNAPSHOT.war
+  - .ebextensions/**/*
