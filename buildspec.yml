@@ -6,19 +6,18 @@ phases:
   pre_build:
     commands:
     - echo In the pre_build phase...
-  build:
+ build:
     commands:
-    - echo Build started on `date`
+      - echo Build started on `date`
+      - mvn package
+      - ls -R  # Affiche le contenu pour la vérification
+
   post_build:
     commands:
-    - echo Build completed on `date`
-      - mvn package
-      - ls -R
-      - mkdir deployment
-      - mv target/demo1-0.0.1-SNAPSHOT.jar deployment/demo1-0.0.1-SNAPSHOT.jar
-      - cp -R .ebextensions deployment/
-      - zip -r spring-app.zip deployment
-      - aws s3 cp spring-app.zip s3://spring-webapp-cicd/
+      - echo Build completed on `date`
+      - zip -r spring-app.zip target/demo1-0.0.1-SNAPSHOT.jar .ebextensions/*
+      - ls -R  # Affiche le contenu du dossier après la création du ZIP
+      - aws s3 cp spring-app.zip s3://spring-webapp-cicd/spring-app.zip
+
 artifacts:
-  files:
-  - spring-app.zip
+  files: spring-app.zip
