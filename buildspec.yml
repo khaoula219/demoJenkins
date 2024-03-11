@@ -12,12 +12,13 @@ phases:
   post_build:
     commands:
     - echo Build completed on `date`
-    - mvn package
-    - ls -R
-    - mv target/demo1-0.0.1-SNAPSHOT.jar bike-service-0.0.1-SNAPSHOT.war
-    - aws s3 cp bike-service-0.0.1-SNAPSHOT.war s3://spring-webapp-cicd/spring-app.zip
+      - mvn package
+      - ls -R
+      - mkdir deployment
+      - mv target/demo1-0.0.1-SNAPSHOT.jar deployment/demo1-0.0.1-SNAPSHOT.jar
+      - cp -R .ebextensions deployment/
+      - zip -r spring-app.zip deployment
+      - aws s3 cp spring-app.zip s3://spring-webapp-cicd/
 artifacts:
   files:
-  - bike-service-0.0.1-SNAPSHOT.war
   - spring-app.zip
-  - .ebextensions/**/*
