@@ -14,7 +14,7 @@ phases:
     - echo Build completed on `date`
     - mvn package
     - ls -R
-    - mv target/bike-service-0.0.1-SNAPSHOT.war bike-service-0.0.1-SNAPSHOT.war
+    - mv target/demo1-0.0.1-SNAPSHOT.jar bike-service-0.0.1-SNAPSHOT.war
     - aws s3 cp bike-service-0.0.1-SNAPSHOT.war s3://spring-webapp-cicd/spring-app.zip
 artifacts:
   files:
