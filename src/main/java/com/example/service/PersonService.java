@@ -80,6 +80,13 @@ public class PersonService {
 		p.setFirstName("webhookkk");
 		p.setLastName("testJenjinsJobb");
 		persons.add(p);
+
+		p = new Person();
+		p.setId("11");
+		p.setAge(23);
+		p.setFirstName("Ali");
+		p.setLastName("Alaoui");
+		persons.add(p);
 	}
 	public Person getPerson(String id) {
 		for(Person person:persons) {
